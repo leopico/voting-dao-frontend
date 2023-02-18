@@ -8,7 +8,7 @@ import Spinner from "../components/Spinner";
 
 const CandidateRegis = () => {
   //context
-  const { uploadToIPFSCandidate, createCandidate } =
+  const { uploadToIPFSCandidate, createCandidate, organizerAddress } =
     useContext(FetchDataContext);
 
   //react-router-dom
@@ -215,7 +215,11 @@ const CandidateRegis = () => {
                               <b>Organizer:</b>
                             </small>
                             &nbsp;
-                            <small>0xfmsd...fsf34</small>
+                            <small>
+                              {organizerAddress.slice(0, 5) +
+                                "..." +
+                                organizerAddress.slice(38)}
+                            </small>
                             <p className="mt-2 bg-warning rounded-3 p-1">
                               <small>
                                 Only organizer of the voting contract can create

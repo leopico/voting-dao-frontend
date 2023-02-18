@@ -51,6 +51,9 @@ export const FetchDataContextProvider = (props) => {
   const [voterArray, setVoterArray] = useState(pushVoter); //loop all voter data
   const [voterLength, setVoterLength] = useState("");
 
+  //organizer address
+  const [organizerAddress, setOrganizerAddress] = useState("");
+
   //connection metamask
   const checkIfWalletIsConnected = async () => {
     if (!window.ethereum)
@@ -205,6 +208,9 @@ export const FetchDataContextProvider = (props) => {
       //get candidate length
       const candidateListData = await contract.getCandidateLength();
       setCandidateLength(candidateListData);
+      //get organizeraddress
+      const organizerAdd = await contract.votingOrganizer();
+      setOrganizerAddress(organizerAdd);
     } catch (error) {
       setMessage({
         type: "error",
@@ -256,6 +262,7 @@ export const FetchDataContextProvider = (props) => {
         candidateArray,
         candidateLength,
         giveVote,
+        organizerAddress,
       }}
     >
       {props.children}
